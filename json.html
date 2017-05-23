@@ -1,0 +1,33 @@
+<html>
+
+<head>
+<script>
+	var locations = [ ['Bangalore:', 12.883725, 77.8926978, 'https://www.renault.co.in/etc/designs/renault_v2/17.5.5-59/common-assets/img/map/brand-marker-grey.png'], ['Bangalore', 12.728309, 77.8474942, 'https://www.renault.co.in/etc/designs/renault_v2/17.5.5-59/common-assets/img/map/brand-marker-grey.png'], ['Bangalore', 12.6282935, 77.8474942, 'https://www.renault.co.in/etc/designs/renault_v2/17.5.5-59/common-assets/img/map/brand-marker-grey.png'], ['Bangalore', 12.5340695, 12.5340695, 'https://www.renault.co.in/etc/designs/renault_v2/17.5.5-59/common-assets/img/map/brand-marker-grey.png'], ['Bangalore', 12.7377432, 78.1153273, 'https://www.renault.co.in/etc/designs/renault_v2/17.5.5-59/common-assets/img/map/brand-marker-grey.png'], ['Bangalore', 13.0124288, 77.9738649, 'https://www.renault.co.in/etc/designs/renault_v2/17.5.5-59/common-assets/img/map/brand-marker-grey.png'], ['Bangalore', 13.1280101, 78.1306283, 'https://www.renault.co.in/etc/designs/renault_v2/17.5.5-59/common-assets/img/map/brand-marker-grey.png'], ['Bangalore', 13.1178884, 78.330408, 'https://www.renault.co.in/etc/designs/renault_v2/17.5.5-59/common-assets/img/map/brand-marker-grey.png'] ];
+	var result = "";
+	/*for (var i = 0; i < locations.length; i++) {
+		
+		 result = locations[i][1]+locations[i][2] +"<br>";
+
+		}*/
+	
+	
+	
+	</script>
+
+</head>
+<body>
+  <button onclick="a()"></button>
+	  <div id="json"> </div>
+	<script>
+		var result = "";
+		for (var i = 0; i < locations.length; i++) {
+
+		 result += locations[i][1]+"-"+locations[i][2] +"<br>";
+
+		}
+
+		document.getElementById("json").innerHTML = result;
+	</script>
+</body>
+
+</html>

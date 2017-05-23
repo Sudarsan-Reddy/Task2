@@ -1,0 +1,474 @@
+<html>
+<head>
+	<title>Ashok LeyLand </title>
+	<script src="markerCluster1.js"></script>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<meta name="viewport" content="initial-scale=1.0,
+								   user-scalable=no" />
+	<style type="text/css">
+		#map {
+			max-width: 80%;
+			height: 500px;
+			margin: auto;
+		}
+		
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		
+		.head-title {
+			font-size: 10px;
+		}
+		
+		.head-img {
+			float: left;
+		}
+		
+		#head-title {
+			padding-left: 10px;
+		}
+		
+		#location {
+			display: none;
+			margin-top: 20px;
+		}
+		.my-clusterer {
+		width:50%;
+		}
+		.cluster {
+			background-size: cover;
+		}
+
+	</style>
+</head>
+
+<body>
+	<div id="map" class="test"></div>
+	<div id="location" class="container-fluid">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="heading-group">
+
+					<span class="head-img"><img src="Al_logo4.png" class="img-responsive" ></span>
+					<span id="head-title"> </span>
+
+				</div>
+				<div class="address">
+					<h3>Address</h3>
+					<div id="r-add">
+
+					</div>
+
+				</div>
+				<div id="">
+
+					<a id="target" target="_blank">Get directions</a>
+
+				</div>
+			</div>
+			<div class="col-md-3 col-md-offset-1">
+				<h3>contact</h3>
+				<p id="ph-number">
+
+				</p>
+				mail:<span id="mail"> </span>
+			</div>
+		</div>
+
+	</div>
+	//Google Map API KEY to load Libraries of google map.
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnpV3hn2HCt7x3VToJs-w-Axp3ppP-uCY&&callback=initMap&&libraries=places"></script>
+
+	<script type="text/javascript">
+		
+		//Map intilization function
+		function initMap() {
+			var myLatLng = {
+				lat: 12.728309,
+				lng: 77.8474942
+			};
+
+			//Map Object
+			var map = new google.maps.Map(document.getElementById('map'), {
+				minZoom : 2,
+				center: myLatLng,
+				/*scrollwheel: false 
+				scrollwheel: false */
+				draggable: false
+				
+				
+				
+			});
+			//window.alert(map.getMapTypeId());
+			//map.setOptions({ minZoom: 2,maxzoom:15 });
+			//Json obect containing the all lpocations of Ashok Leyland locations
+			var locations = [
+				[{
+					'title': 'Ashok leyland Bangalore1',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 12.883725, 77.8926978],
+				[{
+					'title': 'Ashok leyland Bangalore2',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 12.728309, 77.8474942],
+				[{
+					'title': 'Ashok leyland Bangalore3',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 12.6282935, 77.8474942, ],
+				[{
+					'title': 'Ashok leyland Bangalore4',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 12.5340695, 12.5340695],
+				[{
+					'title': 'Ashok leyland Bangalore5',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 12.7377432, 78.1153273],
+				[{
+					'title': 'Ashok leyland Bangalore6',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 13.0124288, 77.9738649],
+				[{
+					'title': 'Ashok leyland Bangalore7',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 13.1280101, 78.1306283],
+				[{
+					'title': 'Ashok leyland Bangalore8',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 13.1178884, 78.330408],
+				[{
+					'title': 'Ashok leyland Bangalore9',
+					'address': 'Automotive Manufactures Pvt. Ltd.' + 'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 12.927376, 77.671533],
+
+				[{
+					'title': 'Ashok leyland Bangalore10',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 14.361243, 79.885768],
+				[{
+					'title': 'Ashok leyland Bangalore11',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 14.50732, 78.7878719],
+				[{
+					'title': 'Ashok leyland Bangalore12',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 14.48255289, 78.8193512],
+				[{
+					'title': 'Ashok leyland Bangalore13',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 14.42803042, 78.86192322],
+				[{
+					'title': 'Ashok leyland Bangalore14',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 28.61345942, 78.18145752],
+				[{
+					'title': 'Ashok leyland Bangalore15',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 28.66167122, 77.95623779],
+				[{
+					'title': 'Ashok leyland Bangalore16',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 28.57487405, 78.30230713],
+				[{
+					'title': 'Ashok leyland Bangalore17',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 9.535749, 8.21777344],
+				[{
+					'title': 'Ashok leyland Bangalore18',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 7.62388685, 13.31542969],
+
+				[{
+					'title': 'Ashok leyland Bangalore19',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 8.05922963, 10.41503906],
+				[{
+					'title': 'Ashok leyland Bangalore20',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 38.82259098, -81.03515625],
+				[{
+					'title': 'Ashok leyland Bangalore21',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 39.63953756, -90.17578125],
+				[{
+					'title': 'Ashok leyland Bangalore22',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, 43.06888777, -84.90234375],
+				[{
+					'title': 'Ashok leyland Bangalore23',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com24'
+				}, 41.02964339, -85.06713867],
+				[{
+					'title': 'Ashok leyland Bangalore',
+					'address': 'Automotive Manufactures Pvt. Ltd.' +
+						'Plot N0-142-146-Katatur Post, Opp FCI Godown IDA' +
+						'Nellore' +
+						'Andhra Pradesh',
+					'contact': '08612383066-67 / 9000012194-9959900685 / 9849534576-7032724248',
+					'mail': 'wmnlr.nlr@automotiveml.com'
+				}, -35.46066995, -96.50390625]
+			];
+			
+			//bound object
+			var bounds = new google.maps.LatLngBounds();
+			var markers = []; // to store markers 
+			var imgUrl = "AL_logo3.png"; // default img of marker
+			var imgChange = "Al_logo4.png"; // img when clicking on marker
+			var clusterImg = "marker-cluster1.png"; // Cluster image to show images.
+			
+			var defaultimage = {
+				url: imgUrl
+			};    
+			var image = {
+				url: "https://www.renault.co.in/etc/designs/renault_v2/17.6.6-86/common-assets/img/map/brand-marker-grey.png",
+				// This marker is 20 pixels wide by 32 pixels high.
+				size: new google.maps.Size(45, 45),
+				// The origin for this image is (0, 0).
+				origin: new google.maps.Point(0, 0),
+				// The anchor for this image is the base of the flagpole at (0, 32).
+				anchor: new google.maps.Point(55, 46)
+			};
+			var image1 = {
+				url:"ashok.jpg" ,
+				// This marker is 20 pixels wide by 32 pixels high.
+				size: new google.maps.Size(45, 45),
+				// The origin for this image is (0, 0).
+				
+			};
+			for (var i = 0; i < locations.length; i++) {
+
+				//To set  all the markers on the map.
+				var marker = new google.maps.Marker({
+					position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+					map: map,
+					icon:image,
+					title: locations[i][0].title,
+
+				});
+
+				markers.push(marker);
+				//window.alert(marker.getPosition());
+				bounds.extend(marker.getPosition());
+				
+				//it will trigger when clicking on marker
+				google.maps.event.addListener(marker, 'click', getInfoCallback(map, locations[i][0]));
+			}
+			//map.setZoom('zoom':'50');
+			
+			//bounds.extend( new google.maps.LatLng(70.579765, -169.277344));
+			//bounds.extend( new google.maps.LatLng(-20.066251, -161.191406));
+		    map.fitBounds(bounds);
+			
+			//Marker cluster Object
+			var options = {
+				
+				styles : [{
+					url: clusterImg,
+					width: 45,
+					height: 45,
+					textSize: 12,
+					textColor:'white',
+					cssClass : "cluster"
+				}],
+				cssClass : "cluster"
+			};
+			
+	  /*	var markerCluster = new MarkerClusterer(map, markers, {
+				styles: [{
+					
+				     gridSize: 40,
+					textColor: 'white',
+					url: "marker-cluster1.png",
+					width: 50,
+			         height: 48,
+                      
+					
+					
+					/*
+					backgroundPosition : '4',
+					anchor :[5,5] 
+					
+				
+				}]
+			}); */
+			var markerCluster = new MarkerClusterer(map, markers,options,{cssClass : "cluster"});
+			
+			function getInfoCallback(map, content) {
+				return function() {
+					map.setCenter(this.getPosition());
+					setAddress(content, this)
+					for (var j = 0; j < markers.length; j++) {
+						markers[j].setIcon(defaultimage);
+					}
+					setIcon(this);
+				};
+			}
+		
+			function setAddress(content, gmarker) {
+
+				var latLang = gmarker.getPosition();
+				var lat = latLang.lat();
+				var lng = latLang.lng();
+				var target = 'https://maps.google.com/maps?daddr=' + lat + "," + lng + '&amp;saddr';
+
+				document.getElementById('location').style = 'display:block';
+				document.getElementById('head-title').innerHTML = content.title;
+				document.getElementById('r-add').innerHTML = content.address;
+				document.getElementById('ph-number').innerHTML = content.contact;
+				document.getElementById('mail').innerHTML = content.mail;
+				document.getElementById('target').href = target;
+			}
+
+			function setIcon(marker1) {
+				marker1.setIcon(imgChange);
+			}
+			
+			
+			
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(function(position) {
+					var pos = {
+						lat: position.coords.latitude,
+						lng: position.coords.longitude
+					};
+
+					//infoWindow.setPosition(pos);
+					//infoWindow.setContent('Location found.' + map.getCenter());
+					//infoWindow.open(map);
+					map.setCenter(pos);
+				}, function() {
+					handleLocationError(true, infoWindow, map.getCenter());
+				});
+			} else {
+				// Browser doesn't support Geolocation
+				//handleLocationError(false, infoWindow, map.getCenter());
+			}
+		/*	var zoomChangeBoundsListener =  google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
+				if (this.getZoom()){
+					this.setZoom(16);
+				}
+			});
+			setTimeout(function(){google.maps.event.removeListener(zoomChangeBoundsListener)}, 2000);*/
+		}
+
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+
+
+1) showing Google map on the web page. (10%, 1 hour) 
+2) setting the locations on the google map.(10, 2 hours)
+3) setting the icons on the locations. (10%, 2 hours)
+3) showing location addresses when clicking on locations.(20%, 2.5 hours)
+4) clustering.(50%, 6 hours)

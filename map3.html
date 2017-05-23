@@ -1,0 +1,100 @@
+<html>
+  <head>
+    <title>Leaflet Cluster Example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ 
+    <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css" />
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js"></script>
+    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+    <script type='text/javascript' src='http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js'></script>
+    <script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js'></script>
+    <script sync defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnpV3hn2HCt7x3VToJs-w-Axp3ppP-uCY&&libraries=places"></script>
+	<script>
+	var map = L.map( 'map', {
+  center: [10.0, 5.0],
+  minZoom: 2,
+  zoom: 2
+});
+ 
+L.tileLayer( 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+ attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+ subdomains: ['a','b','c']
+}).addTo( map );
+ 
+var myURL = jQuery( 'script[src$="leaf-demo.js"]' ).attr( 'src' ).replace( 'leaf-demo.js', '' );
+ 
+var myIcon = L.icon({
+  iconUrl: myURL + 'images/pin24.png',
+  iconRetinaUrl: myURL + 'images/pin48.png',
+  iconSize: [29, 24],
+  iconAnchor: [9, 21],
+  popupAnchor: [0, -14]
+});
+
+var markerClusters = L.markerClusterGroup();
+ 
+for ( var i = 0; i < markers.length; ++i )
+{
+  var popup = markers[i].name +
+              '<br/>' + markers[i].city +
+              '<br/><b>IATA/FAA:</b> ' + markers[i].iata_faa +
+              '<br/><b>ICAO:</b> ' + markers[i].icao +
+              '<br/><b>Altitude:</b> ' + Math.round( markers[i].alt * 0.3048 ) + ' m' +
+              '<br/><b>Timezone:</b> ' + markers[i].tz;
+ 
+  var m = L.marker( [markers[i].lat, markers[i].lng], {icon: myIcon} )
+                  .bindPopup( popup );
+ 
+  markerClusters.addLayer( m );
+}
+ 
+map.addLayer( markerClusters );
+
+var markers = [
+  {
+    "name":"Goroka",
+    "city":"Goroka, Papua New Guinea",
+    "iata_faa":"GKA",
+    "icao":"AYGA",
+    "lat":-6.081689,
+    "lng":145.391881,
+    "alt":5282,
+    "tz":"Pacific/Port_Moresby"
+  },{
+    "name":"Madang",
+    "city":"Madang, Papua New Guinea",
+    "iata_faa":"MAG",
+    "icao":"AYMD",
+    "lat":-5.207083,
+    "lng":145.7887,
+    "alt":20,
+    "tz":"Pacific/Port_Moresby"
+  },{
+  },{
+    "name":"San Diego Old Town Transit Center",
+    "city":"San Diego, United States",
+    "iata_faa":"OLT",
+    "lat":32.7552,
+    "lng":-117.1995,
+    "alt":0,
+    "tz":"America/Los_Angeles"
+  }
+];
+	</script> 
+ </head>
+ 
+  <body>
+    <h1>Leaflet Cluster Example</h1>
+ 
+    <p>Here's an interactive map indicating where airports and train stations are located around the world.  The data comes from <a href="http://openflights.org/data.html" target="_blank">OpenFlights.org</a>.
+ 
+    <div id="map" style="width: 800px; height: 500px; border: 1px solid #AAA;"></div>
+ 
+    <script type='text/javascript' src='maps/airports.js'></script>
+    <script type='text/javascript' src='maps/leaf-demo.js'></script>
+  </body>
+</html>
+
